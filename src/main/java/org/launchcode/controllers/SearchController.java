@@ -27,15 +27,14 @@ public class SearchController {
     }
 
     @RequestMapping(value = "results")
-    public String search(Model model,
-                         @ModelAttribute SearchForm searchForm) {
+    public String search(Model model, @ModelAttribute SearchForm searchForm) {
 
         ArrayList<Job> jobs;
 
-        if (searchForm.getSearchField().equals(JobFieldType.ALL)) {
+        if (searchForm.getSearchField().equals(JobFieldType.ALL)) {   // all get more results - 98
             jobs = jobData.findByValue(searchForm.getKeyword());
         } else {
-            jobs = jobData.findByColumnAndValue(searchForm.getSearchField(), searchForm.getKeyword());
+            jobs = jobData.findByColumnAndValue(searchForm.getSearchField(), searchForm.getKeyword()); //e.g java
         }
 
         model.addAttribute("jobs", jobs);
